@@ -119,7 +119,7 @@
     // Load and parse star data
     async function loadStarData() {
         try {
-            const response = await fetch('data/hyg_v42.csv.gz');
+            const response = await fetch('data/named_stars.csv.gz');
             const arrayBuffer = await response.arrayBuffer();
             const uint8Array = new Uint8Array(arrayBuffer);
             const decompressed = pako.inflate(uint8Array, { to: 'string' });
@@ -160,13 +160,12 @@
                 bf: values[idxBf] || ''
             };
 
+            // All stars in named_stars.csv are named
             stars.push(star);
-            if (star.name) {
-                namedStars.push(star);
-            }
+            namedStars.push(star);
         }
 
-        console.log(`Loaded ${stars.length} stars, ${namedStars.length} with names`);
+        console.log(`Loaded ${namedStars.length} named stars`);
     }
 
     function parseCSVLine(line) {
@@ -268,24 +267,7 @@
     }
 
     function drawStars() {
-        // First draw all unnamed stars (dimmer)
-        for (const star of stars) {
-            if (star.mag > maxMagnitude) continue;
-            if (star.name) continue; // Skip named stars for now
-
-            const pos = starToCanvas(star);
-            if (pos.x < -10 || pos.x > canvas.width + 10 ||
-                pos.y < -10 || pos.y > canvas.height + 10) continue;
-
-            const radius = getStarRadius(star.mag, false);
-
-            ctx.beginPath();
-            ctx.arc(pos.x, pos.y, radius, 0, Math.PI * 2);
-            ctx.fillStyle = '#888';
-            ctx.fill();
-        }
-
-        // Then draw named stars (brighter, on top)
+        // Draw all named stars with glow effect
         for (const star of namedStars) {
             if (star.mag > maxMagnitude) continue;
 
@@ -295,7 +277,7 @@
 
             const radius = getStarRadius(star.mag, true);
 
-            // Glow effect for named stars
+            // Glow effect
             const gradient = ctx.createRadialGradient(pos.x, pos.y, 0, pos.x, pos.y, radius * 2);
             gradient.addColorStop(0, '#fff');
             gradient.addColorStop(0.5, 'rgba(200, 220, 255, 0.5)');
