@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Star Quiz</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="app">
+        <canvas id="starfield"></canvas>
+
+        <div id="quiz-popup" class="hidden">
+            <h3>What star is this?</h3>
+            <div id="quiz-options"></div>
+            <div id="quiz-feedback" class="hidden"></div>
+        </div>
+
+        <div id="controls">
+            <h2>Star Quiz</h2>
+
+            <div class="control-group">
+                <h3>Score</h3>
+                <div id="score-display">
+                    <span id="correct-count">0</span> / <span id="total-count">0</span>
+                    <span id="percentage">(0%)</span>
+                </div>
+            </div>
+
+            <div class="control-group">
+                <h3>View Controls</h3>
+                <label class="checkbox-label">
+                    <input type="checkbox" id="grid-toggle">
+                    Show Grid
+                </label>
+                <div class="zoom-controls">
+                    <button id="zoom-in">+ Zoom In</button>
+                    <button id="zoom-out">- Zoom Out</button>
+                    <button id="reset-view">Reset View</button>
+                </div>
+            </div>
+
+            <div class="control-group">
+                <h3>Filter</h3>
+                <label>
+                    Max Magnitude:
+                    <input type="range" id="mag-filter" min="0" max="10" value="6" step="0.5">
+                    <span id="mag-value">6</span>
+                </label>
+            </div>
+
+            <div class="control-group">
+                <button id="done-btn" class="primary-btn">Done - Show Results</button>
+            </div>
+
+            <div id="results" class="hidden">
+                <h3>Quiz Results</h3>
+                <p id="results-text"></p>
+                <button id="restart-btn" class="primary-btn">Start New Quiz</button>
+            </div>
+
+            <div class="control-group instructions">
+                <h3>Instructions</h3>
+                <ul>
+                    <li>Drag to pan the star field</li>
+                    <li>Scroll to zoom in/out</li>
+                    <li>Click on a star to guess its name</li>
+                    <li>Only named stars (shown brighter) are quizzable</li>
+                </ul>
+            </div>
+
+            <div id="loading">Loading star data...</div>
+        </div>
+    </div>
+
+    <script src="pako.min.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
