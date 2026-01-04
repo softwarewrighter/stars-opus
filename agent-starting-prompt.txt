@@ -1,0 +1,22 @@
+We are going to build a Star Quiz application. The goal is an interactive
+  star field viewer with a quiz mechanic.
+
+  The hyg star database is available at ~/codeberg/wrightmikea/hyg - this is a
+  liberally-licensed star catalog with over 100,000 stars including position,
+  magnitude, distance, and proper names.
+
+  The application should:
+  1. Display a star field with stars as white circles of varying diameter
+     (based on magnitude/brightness)
+  2. Be draggable and zoomable
+  3. Have an optional grid overlay toggle
+  4. Quiz mechanic: Click a star → popup with multiple-choice star names
+     (radio buttons, correct name + 3 nearby/similar stars, random order)
+  5. Immediate feedback: green checkmark "Correct" or red X "Incorrect"
+  6. Track success rate
+  7. Controls panel on the right side
+  8. Done button to show results and reset
+
+  Start by exploring the hyg database to understand the schema and identify
+  which fields we'll need for the quiz application.
+
