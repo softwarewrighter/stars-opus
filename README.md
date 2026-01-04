@@ -30,4 +30,6 @@ Star data from the [HYG Database](https://github.com/astronexus/HYG-Database) (v
 
 ## License
 
-MIT
+[Creative Commons Attribution-ShareAlike 4.0 International License][cc-by-sa].
+
+
